@@ -6,7 +6,8 @@ langchain-community
 
 chromadb
 faiss-cpu
-langchain_google_genai
+# langchain_google_genai
+langchain-google-genai
 pandas
 numpy
 scipy
@@ -47,7 +48,15 @@ ultralyticsplus
 
 #LLM Evaluation
 deepeval
+langchain-google-vertexai # for google vertex ai eval LLM 
 ragas 
 
 # AI Agents
 langgraph
+
+
+#LLM imferemce optmization
+vllm
+optimum
+fastembed  # for fast embedding cpu
+fastembed-gpu # for fast embedding gpu
