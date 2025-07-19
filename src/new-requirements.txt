@@ -602,7 +602,7 @@ pyarrow==16.1.0
 pyarrow-hotfix==0.6
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
-pyautogen==0.2.9
+ag2==0.2.9
 pybind11==2.13.6
 PyBluez==0.23
 pycairo==1.20.1
