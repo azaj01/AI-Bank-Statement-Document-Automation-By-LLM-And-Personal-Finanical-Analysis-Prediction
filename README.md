@@ -1,88 +1,123 @@
-# AI-Bank Statement document automatic by LLM and Personal financial analysis
+# 🏦 AI Bank Statement Document Automation with LLM & Personal Financial Analysis
 
+[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![AG2](https://img.shields.io/badge/Agent_Framework-AG2-green)](https://github.com/ag2ai/ag2)
 
-### Introdctions
-#### Business/ Use case 
-Every Month, we obtain a lot bank statement in pdf format document. We intend to calculate and summarize the personal expensive and income from bank statement, statistically analysis monthly and yearly income vs expense for personal finanial planing . It is taking time to handle and store data.
+**Automated extraction, structuring, RAG-powered querying, and AI-agent financial analysis of bank statement PDFs.**
 
-This project intended to be used LLM Model for the purpose of assisting the user obtain fully record from bank statement by RAG technique. Convert the bank statement from unstructured document format into structured format. Store the records into database. Use LLM nature language to query the bank statement and give us the report. 
+This project converts unstructured bank statement PDFs into structured data using computer vision (YOLO), OCR, and Large Language Models. It supports natural language queries and generates insightful monthly/yearly financial reports.
 
+---
 
-This project mainly can divide into three main parts: 
-1. Data Extraction model for PDF file complex format 
-2. Embedding model + Vector Database for Store PDF Retrival document
-3. LLM Model + RAG technique from data retrieved from database with natural language queries by user 
+## ✨ Key Features
 
-### Technology use in this project
-1. Unstructure Document Preprocssing
-- Because the input document complexity, include table, image (chart), I will use several AI model  like OCR , commputer vision model, Vision transformer , layout transformer, Embedding model to extract and analysis the document content from bank statement.
-- Complex layout/Context format Analysis by ML model 
-- Level 1 analysis: Document layout Analysis
-  - Use Computer vision (object detection) AI model to extract component in document content
-    - Custom Train Object ddection Model (YOLO) for Detect/recogize the Document Layout Component
-    - Detail of the Custom Train YOLO document layout detection model 
-    - see my other github project (yolo-base-doc-layout-detection) :  <https://github.com/johnsonhk88/yolo-base-doc-layout-detection> 
-  - then use different AI model analysis and extract different type of components context
-  -
-- Level 2 each component context 
-  - use different AI model for extract and recognize different types of docunment components
+- **Advanced Document Parsing** — Custom YOLOv8 layout detection + OCR + LLM table extraction
+- **RAG Pipeline** — Powerful retrieval-augmented generation with vector databases
+- **Autonomous AI Agents** — Built with **AG2** (migrated from pyautogen in Feb 2026)
+- **Financial Intelligence** — Income/expense categorization, trend analysis, monthly & yearly summaries
+- **Multimodal & Local LLM Support** — Works with Gemini, Ollama (Llama 3, Gemma 2, etc.)
+- **User Interface** — Streamlit web application (`apps.py`)
+- **Evaluation Framework** — DeepEval integration for RAG quality testing
 
-- Level 3 High level task analysis
-  - use AI model Entities 
-  - use AI model Sentiment Analysis
-  - use AI model Summarization 
+---
 
-- use advance rule base model or Machine learning  model :
-  - group and reorganize the data into a user-friendly format. (no experience to build rule to graoup data)
-  - Identify common denominators and create headers for each group. (no experence)
-  - Display only the differences between similar items (e.g., window sizes, owners) as line items below each header. 
-  - Automate the process using AI, enabling the system to self-learn and understand the data structure.  
-  - Extract relevant data from PDFs with different layouts and formats.
+## 🛠 Technology Stack
 
+- **Document Processing**: YOLOv8 (custom layout model), PyMuPDF, pytesseract, pymupdf4llm
+- **RAG & Vector Store**: LangChain, Chroma, Faiss
+- **Agent Framework**: **AG2** (latest)
+- **LLMs**: Google Gemini, Local models via Ollama
+- **Frontend**: Streamlit
+- **Analysis**: pandas, Plotly
 
+**Related Repo**: [YOLO Base Document Layout Detection](https://github.com/johnsonhk88/yolo-base-doc-layout-detection)
 
-2. retrieval augmented generation (RAG) with langChain  
-- use Embedding model with VectorDB to Retrieve data values by query
-- using training dataset for improvement the Text summaration task for conference speakers
-- using Advance RAG technique improve retrieval accuracy (e.g. re-ranking, query extensions, auto-merging)
+---
 
-3. LLM Model / Multi-model 
-- try to use different open LLM models / multi-model (e.g. LLama3, gemma 2) , prefer use local open LLM models(planning inference LLM model at offline in local machine)
-- LLM model use for user-friendly documentation queries and retrieval information interface with natural language
-
-4. LLM Model evaluation
-- use truLens or W&B framework for evaluation and debug LLM performance
-- LLM evaluation : Content relevance, Answer Relevance, accuary, recall, precision 
-
-5. AI agent
-- use AI agent automatically trigger multiple function 
-
-6. VectorDB 
-- use Vector DataBase to store the converted Document context into embedding vector
-- use Vector Database can find document similarity 
-
-7. SQL Database
-- use to store the conference record
-- use for query history conference record
-
-8. FrontEnd UI
-- first version will be used Streamlit for Frontend UI
-- later versions will be Full stack with Backend Restful API
-
-
-
-### Installation and Setup
-1. use requirements.txt for installation package dependencies
-2. you can setup virual environment by venv 
-3. add your google api key to .env file  for enviroment variables
-4. install pytesseract library for ubuntu linux , please run install-pytesseract-for-linux.sh script file 
-
-### Run Application
-1. For Development version:
-    go to dev folder run jupyter notebook code for development new model/techique
-     
-```bash
-cd src/dev/
+## 📁 Repository Structure
 ```
-2. For Application GUI version: 
-    running steamlit run apps.py for develop the application
+src/
+├── dev/                    # Jupyter notebooks for development & testing
+│   ├── ai_bank_statement_dev.ipynb
+│   ├── ai_agent_dev.ipynb
+│   └── RAG_algorithm_test.ipynb
+├── apps.py                 # Streamlit web application
+├── bank-statement-document/ # Core processing scripts
+├── yolo-base-layout-analysis/
+├── faiss_index/ & chroma_db/
+├── test-document/          # Sample PDFs for testing
+├── *.sh                    # Installation & setup scripts
+├── requirements.txt
+└── .env.example
+```
+
+
+---
+
+## 🚀 Quick Start
+
+### 1. Clone & Setup
+
+```bash
+git clone https://github.com/johnsonhk88/AI-Bank-Statement-Document-Automation-By-LLM-And-Personal-Finanical-Analysis-Prediction.git
+cd AI-Bank-Statement-Document-Automation-By-LLM-And-Personal-Finanical-Analysis-Prediction
+
+# Setup virtual environment and install dependencies
+./src/build-python-virual-environment.sh
+./src/activate_virual_environment.sh
+./src/install-requirement.sh
+
+# Install Tesseract OCR (Ubuntu/Debian)
+./src/install-pytesseract-for-linux.sh
+```
+
+## Create a .env file and add your GOOGLE_API_KEY (for Gemini).
+
+### 2. Run the Application
+#### Development Notebooks
+
+```bash
+cd src/dev
+jupyter notebook
+```
+
+#### Streamlit Web UI
+
+```bash
+cd src
+streamlit run apps.py
+```
+
+## 📈 Recent Major Updates
+
+- Feb 24, 2026 — Full migration from pyautogen → AG2 agent framework
+- 2025 — Added advanced RAG pipeline, multimodal support, and DeepEval evaluation
+- Ongoing — Improving financial categorization and local LLM inference
+
+
+## 🗺 Roadmap
+
+ - Complete production-ready end-to-end pipeline
+ - Advanced time-series forecasting for cash flow prediction
+ - Multi-bank statement support with automatic categorization
+ - Docker + API deployment
+ - Rich interactive dashboard with more visualizations
+
+------------------------------------------------------------------------
+
+## 📄 License
+### This project is licensed under the Apache License 2.0.
+
+-------------------------------------------------------------------------
+
+#### Made with ❤️ for personal finance automation in Hong Kong.
+#### ⭐ Star this repo if you find it useful!
+
+
+
+**Just copy the entire block above** and replace your current `README.md` file on GitHub.
+
+This is the **final, clean, and up-to-date version**. Push it and your project will look professional instantly!
+
+Want me to add screenshots, example queries, or a demo video section next? Just say the word! 🚀
